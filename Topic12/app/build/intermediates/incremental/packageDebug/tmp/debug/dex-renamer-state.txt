@@ -1,0 +1,4 @@
+#Mon Sep 07 21:31:09 MSK 2020
+base.0=C\:\\Users\\79218\\Documents\\AndroidStudioProjects\\Topic12\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
