@@ -21,6 +21,7 @@ public class MainFragment extends Fragment {
     private MainViewModel mViewModel;
     EditText mEditPass;
     boolean isRecreated = false;
+    final String IS_RECREATED = "isRecreated";
 
     final TextWatcher passwordWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -29,7 +30,7 @@ public class MainFragment extends Fragment {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
         }
 
-        //Задаем действия для TextView после смены введенных в EditText символов:
+        //Задаем действия после смены введенных в EditText символов
         public void afterTextChanged(Editable s) {
             if (isRecreated == false) {
                 Toast toast = Toast.makeText(getContext(),
@@ -50,7 +51,7 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         isRecreated = true;
-        outState.putBoolean("isRecreated", isRecreated);
+        outState.putBoolean(IS_RECREATED, isRecreated);
     }
 
 
@@ -58,7 +59,7 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            isRecreated = savedInstanceState.getBoolean("isRecreated");
+            isRecreated = savedInstanceState.getBoolean(IS_RECREATED);
         }
     }
 
