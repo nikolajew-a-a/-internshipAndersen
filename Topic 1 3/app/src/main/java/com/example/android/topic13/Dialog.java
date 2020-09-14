@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class Dialog extends DialogFragment implements View.OnClickListener {
     public TextView textView;
+    private final String ITEM_NAME = "name";
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class Dialog extends DialogFragment implements View.OnClickListener {
 
         Bundle args = getArguments();
         if (args != null) {
-            String name = args.getString("name");
+            String name = args.getString(ITEM_NAME);
             textView = v.findViewById(R.id.textView1);
             textView.setText(name);
         }
@@ -31,13 +32,5 @@ public class Dialog extends DialogFragment implements View.OnClickListener {
 
     public void onClick(View v) {
         dismiss();
-    }
-
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-    }
-
-    public void onCancel(DialogInterface dialog) {
-        super.onCancel(dialog);
     }
 }
