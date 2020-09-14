@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Topic 1.3</string>
+    <string name="OK">OK</string>
+    <string name="MainTitle">My RecyclerView :)</string>
+</resources>
