@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Topic 3.1</string>
+    <string name="song">Song:</string>
+    <string name="replica">Replica</string>
+    <string name="band">Band:</string>
+    <string name="the_xx">The XX</string>
+    <string name="style">Style</string>
+    <string name="play">Play</string>
+    <string name="indie_rock">indie rock</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
+</resources>
