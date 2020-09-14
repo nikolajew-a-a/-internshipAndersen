@@ -47,9 +47,9 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         private int position;
 
         public void bind(List<Figure> listOfFigures, int position) {
-            this.textView.setText(listOfFigures.get(position).value);
+            this.textView.setText(listOfFigures.get(position).getValue());
             this.position = position;
-            this.imageView.setImageDrawable(listOfFigures.get(position).figure);
+            this.imageView.setImageDrawable(listOfFigures.get(position).getFigure());
         }
 
         public ViewHolder(@NonNull View itemView) {
