@@ -7,5 +7,5 @@
     <TextView
         android:id="@+id/messageFragmentText"
         style="@style/TitleStyle"
-        android:text="Chat Fragment"/>
+        android:text="@string/chat_fragment"/>
 </LinearLayout>

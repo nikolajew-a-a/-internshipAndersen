@@ -12,4 +12,7 @@
     <string name="hello_android">Hello Android</string>
     <string name="made_by">made by Anton</string>
     <string name="mail">nikolajew.a.a@yandex.ru</string>
+    <string name="chat_fragment">Chat Fragment</string>
+    <string name="message_fragment">Message Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
 </resources>
