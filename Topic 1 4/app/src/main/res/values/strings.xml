@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Topic 1.4</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="message">Message</string>
+    <string name="chat">Chat</string>
+    <string name="profile">Profile</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+    <string name="hello_android">Hello Android</string>
+    <string name="made_by">made by Anton</string>
+    <string name="mail">nikolajew.a.a@yandex.ru</string>
+    <string name="chat_fragment">Chat Fragment</string>
+    <string name="message_fragment">Message Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
+</resources>
