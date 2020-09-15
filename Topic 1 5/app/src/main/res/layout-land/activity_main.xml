@@ -16,5 +16,13 @@
         style="@style/MyTextStyle"
         android:background="@color/colorPrimaryDark"/>
 
+    <TextView
+        android:id="@+id/text3"
+        style="@style/InvisibleStyle"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/text4"
+        style="@style/InvisibleStyle"/>
+
+
+</LinearLayout> 

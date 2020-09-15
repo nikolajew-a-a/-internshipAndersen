@@ -5,6 +5,10 @@
 
 ### Other ###
 proguard-rules.pro
+gradle-wrapper.properties
+/gradlew
+gradlew.bat
+
 
 
 ### Intellij ###

@@ -20,11 +20,13 @@
 
     <TextView
         android:id="@+id/text3"
-        style="@style/InvisibleStyle"/>
+        style="@style/MyTextStyle"
+        android:background="@color/green"/>
 
     <TextView
         android:id="@+id/text4"
-        style="@style/InvisibleStyle"/>
+        style="@style/MyTextStyle"
+        android:background="@color/red"/>
 
 
-</LinearLayout>
+</LinearLayout> 
