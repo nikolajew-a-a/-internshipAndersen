@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/main_blue">
+
+        <TextView
+            android:id="@+id/song_name"
+            style="@style/TitleTextStyle"
+            android:text="@string/name" />
+
+        <View style="@style/VerticalLineStyle" />
+
+        <TextView
+            android:id="@+id/song_band"
+            style="@style/TitleTextStyle"
+            android:text="@string/band" />
+
+        <View style="@style/VerticalLineStyle" />
+
+        <TextView
+            android:id="@+id/song_style"
+            style="@style/TitleTextStyle"
+            android:text="@string/style" />
+    </LinearLayout>
+
+    <View style="@style/HorizontalLineStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/main_blue">
+
+        <Spinner
+            android:id="@+id/spinner_name"
+            style="@style/TitleTextStyle"/>
+
+        <View style="@style/VerticalLineStyle" />
+
+        <Spinner
+            android:id="@+id/spinner_band"
+            style="@style/TitleTextStyle" />
+
+        <View style="@style/VerticalLineStyle" />
+
+        <Spinner
+            android:id="@+id/spinner_style"
+            style="@style/TitleTextStyle"/>
+    </LinearLayout>
+
+    <View style="@style/HorizontalLineStyle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
