@@ -43,6 +43,7 @@ public class MyMusicService extends Service {
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+                player.seekTo(0);
                 onDestroy();
             }
         });
@@ -69,10 +70,13 @@ public class MyMusicService extends Service {
     }
 
     public void onStopMusic() {
-        saveData();
-        stopFlag = true;
-        player.pause();
-        player.release();
+        if (player != null) {
+            saveData();
+            stopFlag = true;
+            player.pause();
+            player.release();
+            player = null;
+        }
     }
 
     public void saveData() {
