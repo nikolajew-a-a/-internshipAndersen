@@ -9,4 +9,5 @@
     <string name="indie_rock">indie rock</string>
     <string name="pause">Pause</string>
     <string name="stop">Stop</string>
+    <string name="select_track">Select track</string>
 </resources>

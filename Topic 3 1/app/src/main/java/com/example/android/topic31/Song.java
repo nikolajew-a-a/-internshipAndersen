@@ -1,4 +1,4 @@
-package com.example.android.topic32;
+package com.example.android.topic31;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -16,6 +16,9 @@ public class Song {
         this.songUri = songSource;
     }
 
+    public Song(){
+    }
+
     public String getSongName() {
         return songName;
     }
@@ -30,5 +33,21 @@ public class Song {
 
     public String getSongUri() {
         return songUri;
+    }
+
+    public void setSongName(String songName) {
+        this.songName = songName;
+    }
+
+    public void setSongBand(String songBand) {
+        this.songBand = songBand;
+    }
+
+    public void setSongStyle(String songStyle) {
+        this.songStyle = songStyle;
+    }
+
+    public void setSongUri(String songUri) {
+        this.songUri = songUri;
     }
 }

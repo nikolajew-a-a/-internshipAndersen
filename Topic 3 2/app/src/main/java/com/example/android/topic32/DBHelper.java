@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -51,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put(DBHelper.KEY_NAME, song.getSongName());
             contentValues.put(DBHelper.KEY_BAND, song.getSongBand());
             contentValues.put(DBHelper.KEY_STYLE, song.getSongStyle());
-            contentValues.put(DBHelper.KEY_URI, song.getSongId());
+            contentValues.put(DBHelper.KEY_URI, song.getSongUri());
             db.insert(DBHelper.TABLE_SONGS, null, contentValues);
         }
     }
