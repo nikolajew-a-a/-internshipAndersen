@@ -6,7 +6,6 @@
 ### Other ###
 proguard-rules.pro
 gradle-wrapper.properties
-gradle.properties
 /gradlew
 gradlew.bat
 

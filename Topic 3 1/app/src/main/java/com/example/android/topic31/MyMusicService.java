@@ -4,7 +4,11 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.IBinder;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 public class MyMusicService extends Service {
@@ -13,10 +17,12 @@ public class MyMusicService extends Service {
     private boolean isStopped;
     private Thread threadSaveTime;
     private Boolean stopFlag = false;
+    private URI currentSong;
 
     public static final String SHARED_PREFS_SERVICE = "sharedPrefsService";
     public static final String TIME = "time";
     public static final String IS_STOPPED = "isStopped";
+    private static final String SONG_URI = "uri";
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -36,8 +42,9 @@ public class MyMusicService extends Service {
     }
 
     public void onPlayMusic(Intent intent) {
+        Uri uriSong = Uri.parse(intent.getStringExtra(SONG_URI));
         if (player == null) {
-            player = MediaPlayer.create(this, R.raw.the_xx);
+            player = MediaPlayer.create(this, uriSong);
         }
         player.start();
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

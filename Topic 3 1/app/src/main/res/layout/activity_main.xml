@@ -23,7 +23,7 @@
         android:text="@string/band" />
 
     <TextView
-        android:id="@+id/name_band"
+        android:id="@+id/band_song"
         style="@style/MyTextStyle"
         android:text="@string/the_xx" />
 
@@ -32,7 +32,7 @@
         android:text="@string/style" />
 
     <TextView
-        android:id="@+id/music_style"
+        android:id="@+id/style_song"
         style="@style/MyTextStyle"
         android:text="@string/indie_rock" />
 
@@ -53,5 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/stop" />
+
+    <Button
+        android:id="@+id/select_song"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_track" />
 
 </LinearLayout>
