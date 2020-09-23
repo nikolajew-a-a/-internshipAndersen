@@ -57,13 +57,27 @@ public class MainActivity extends AppCompatActivity  {
         selectTrackButton.setOnClickListener((v) -> selectTrack(v));
 
         if (isNewTrack()) {
-            parseIntent();
+            parseIntent(getIntent());
             saveData();
+            stopMusic();
+            setSong();
+            playMusic();
+        } else {
+            loadData();
+            setSong();
         }
-
-        loadData();
-        setSong();
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        parseIntent(intent);
+        saveData();
+        setSong();
+        stopMusic();
+        playMusic();
+    }
+
 
     private boolean isNewTrack() {
         return getIntent().getStringExtra(SONG_NAME) != null
@@ -123,11 +137,11 @@ public class MainActivity extends AppCompatActivity  {
         song.setSongUri(sharedPreferences.getString(SONG_URI, null));
     }
 
-    private void parseIntent() {
-        song.setSongName(getIntent().getStringExtra(SONG_NAME));
-        song.setSongBand(getIntent().getStringExtra(SONG_BAND));
-        song.setSongStyle(getIntent().getStringExtra(SONG_STYLE));
-        song.setSongUri(getIntent().getStringExtra(SONG_URI));
+    private void parseIntent(Intent intent) {
+        song.setSongName(intent.getStringExtra(SONG_NAME));
+        song.setSongBand(intent.getStringExtra(SONG_BAND));
+        song.setSongStyle(intent.getStringExtra(SONG_STYLE));
+        song.setSongUri(intent.getStringExtra(SONG_URI));
     }
 
     private void setSong() {
