@@ -1,6 +1,7 @@
 package com.example.android.topic41;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -64,7 +65,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             itemView.setOnClickListener( (v) -> {
                 Intent intent = new Intent(v.getContext(), ArticleActivity.class);
                 intent.putExtra(SELECTED_ARTICLE, article);
-                v.getContext().startActivity(intent);
+                ActivityOptions options =
+                        ActivityOptions.makeSceneTransitionAnimation((Activity) itemView.getContext(), v,
+                                v.getContext().getResources().getString(R.string.transition_to_article));
+                v.getContext().startActivity(intent, options.toBundle());
             });
         }
 
