@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Topic 4.1</string>
+    <string name="title">Title:</string>
+    <string name="source">Source:</string>
+    <string name="description">Description:</string>
+    <string name="theme">Theme</string>
+    <string name="glide_image">Glide image</string>
+    <string name="picasso_image">Picasso image</string>
+</resources>
