@@ -44,4 +44,10 @@ public class ArticleActivity extends AppCompatActivity {
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(picassoImage);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

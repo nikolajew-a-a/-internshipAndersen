@@ -6,4 +6,8 @@
     <string name="theme">Theme</string>
     <string name="glide_image">Glide image</string>
     <string name="picasso_image">Picasso image</string>
+    <string name="transition_to_article">transition_to_article</string>
+    <string name="author">Author:</string>
+    <string name="dash">-</string>
+    <string name="published_at">Published At:</string>
 </resources>
