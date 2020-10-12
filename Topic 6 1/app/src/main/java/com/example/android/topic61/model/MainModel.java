@@ -17,13 +17,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainModel implements MainModelInterface{
     private MainPresenterInterface presenter;
     private JsonPlaceHolderApi jsonPlaceHolderApi;
+    private Call<News> call;
 
     private final String KEY = "apiKey";
     private final String KEY_VALUE = "eb3c938655f74099948faa2b250623df";
     private final String BASE_URL = "https://newsapi.org";
 
 
-    public MainModel(@NonNull MainPresenter presenter) {
+    public MainModel(@NonNull MainPresenterInterface presenter) {
         this.presenter = presenter;
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -34,10 +35,35 @@ public class MainModel implements MainModelInterface{
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
+    public void setPresenter(MainPresenter presenter) {
+        this.presenter = presenter;
+    }
+
+    public JsonPlaceHolderApi getJsonPlaceHolderApi() {
+        return jsonPlaceHolderApi;
+    }
+
+    public void setJsonPlaceHolderApi(JsonPlaceHolderApi jsonPlaceHolderApi) {
+        this.jsonPlaceHolderApi = jsonPlaceHolderApi;
+    }
+
+    public Call<News> getCall() {
+        return call;
+    }
+
+    public void setCall(Call<News> call) {
+        this.call = call;
+    }
+
     @Override
-    public void getNews(@NonNull Map<String, String> parameters){
+    public Call<News> createCall(@NonNull Map<String, String> parameters) {
         parameters.put(KEY, KEY_VALUE);
-        Call<News> call = jsonPlaceHolderApi.getNews(parameters);
+        call = jsonPlaceHolderApi.getNews(parameters);
+        return call;
+    }
+
+
+    public void makeRequest() {
         call.enqueue(new Callback<News>() {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
@@ -54,7 +80,4 @@ public class MainModel implements MainModelInterface{
             }
         });
     }
-
-
-
 }

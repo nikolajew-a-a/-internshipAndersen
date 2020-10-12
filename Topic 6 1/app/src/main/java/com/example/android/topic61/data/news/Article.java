@@ -15,7 +15,7 @@ public class Article implements Parcelable {
     private String publishedAt;
     private String content;
 
-    protected Article(@NonNull Parcel in) {
+    public Article(@NonNull Parcel in) {
         String[] data = new String[9];
         in.readStringArray(data);
         source = new Source(data[0], data[1]);
@@ -26,6 +26,18 @@ public class Article implements Parcelable {
         urlToImage = data[6];
         publishedAt = data[7];
         content = data[8];
+    }
+
+    public Article(@NonNull Source source, @NonNull String author, @NonNull String title, @NonNull String description,
+                   @NonNull String url, @NonNull String urlToImage, @NonNull String publishedAt, @NonNull String content) {
+        this.source = source;
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
+        this.content = content;
     }
 
     public Source getSource() {

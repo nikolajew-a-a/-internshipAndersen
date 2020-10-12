@@ -30,6 +30,14 @@ public class MainPresenter extends MvpPresenter<MainView> implements MainPresent
         model = new MainModel(this);
     }
 
+    public MainModelInterface getModel() {
+        return model;
+    }
+
+    public void setModel(MainModelInterface model) {
+        this.model = model;
+    }
+
     @Override
     public void setMessage(@NonNull String message) {
         getViewState().stopRefreshing();
@@ -63,7 +71,8 @@ public class MainPresenter extends MvpPresenter<MainView> implements MainPresent
     @Override
     public void getArticles() {
         getViewState().startRefreshing();
-        model.getNews(parameters);
+        model.createCall(parameters);
+        model.makeRequest();
     }
 
     @Override
@@ -74,7 +83,8 @@ public class MainPresenter extends MvpPresenter<MainView> implements MainPresent
 
             String value = data.getRequestParameterValues().get(key);
             parameters.put(data.getRequestParameter(), value);
-            model.getNews(parameters);
+            model.createCall(parameters);
+            model.makeRequest();
         }
         isFirstRequest = false;
     }
@@ -86,6 +96,7 @@ public class MainPresenter extends MvpPresenter<MainView> implements MainPresent
 
         String value = data.getRequestParameterValues().get(key);
         parameters.put(data.getRequestParameter(), value);
-        model.getNews(parameters);
+        model.createCall(parameters);
+        model.makeRequest();
     }
 }
