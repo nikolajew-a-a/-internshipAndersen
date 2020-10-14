@@ -1,9 +1,20 @@
-package com.example.android.topic41.news;
+package com.example.android.topic41.data.news;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Source {
+    @SerializedName("id")
+    @Expose
+    @ColumnInfo(name = "sourceId")
     private String id;
+
+    @SerializedName("name")
+    @Expose
+    @ColumnInfo(name = "name")
     private String name;
 
     public Source(@NonNull String id, @NonNull String name) {

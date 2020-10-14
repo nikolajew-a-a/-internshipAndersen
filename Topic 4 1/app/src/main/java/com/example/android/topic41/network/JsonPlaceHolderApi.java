@@ -1,6 +1,10 @@
-package com.example.android.topic41;
+package com.example.android.topic41.network;
 
-import com.example.android.topic41.news.News;
+
+
+
+import com.example.android.topic41.data.news.News;
+
 import java.util.Map;
 
 import retrofit2.Call;
