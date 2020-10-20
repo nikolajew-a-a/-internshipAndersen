@@ -1,33 +1,33 @@
-package com.example.android.topic41;
+package com.example.android.topic41.view.adapter;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.topic41.news.Article;
 
-import org.jetbrains.annotations.NotNull;
+import com.example.android.topic41.R;
+import com.example.android.topic41.data.news.Article;
+import com.example.android.topic41.view.ArticleActivity;
 
 import java.util.List;
+
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     private List<Article> articles;
     private static final String SELECTED_ARTICLE = "selectedArticle";
 
-    public Adapter(@NotNull List<Article> articles) {
+    public Adapter(@NonNull List<Article> articles) {
         this.articles = articles;
     }
 
-    public void setArticles(@NotNull List<Article> articles) {
+    public void setArticles(@NonNull List<Article> articles) {
         this.articles = articles;
         this.notifyDataSetChanged();
     }
@@ -72,7 +72,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             });
         }
 
-        public void bind(@NotNull Article article) {
+        public void bind(@NonNull Article article) {
             this.article = article;
             this.author.setText(article.getAuthor());
             this.title.setText(article.getTitle());
