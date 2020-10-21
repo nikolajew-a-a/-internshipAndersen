@@ -33,6 +33,14 @@ public class ArticlesRepository implements ArticlesRepositoryInterface {
         network = new Network(this);
     }
 
+    public void setNetwork(NetworkInterface network) {
+        this.network = network;
+    }
+
+    public void setCache(CacheInterface cache) {
+        this.cache = cache;
+    }
+
     @Override
     public void loadArticles(String theme, boolean cacheChecked) {
         if (!cacheChecked) {
@@ -58,8 +66,7 @@ public class ArticlesRepository implements ArticlesRepositoryInterface {
 
     @Override
     public void setErrorMessage(String message) {
+        Log.i("mLog_REPOSITORY", "setErrorMessage");
         viewModel.setErrorMessage(message);
     }
-
-
 }

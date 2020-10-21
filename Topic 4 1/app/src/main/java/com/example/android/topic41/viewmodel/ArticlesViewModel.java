@@ -9,29 +9,33 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.android.topic41.data.news.Article;
 import com.example.android.topic41.repository.ArticlesRepository;
+import com.example.android.topic41.repository.ArticlesRepositoryInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class ArticlesViewModel extends AndroidViewModel implements ArticlesViewModelInterface{
-    private ArticlesRepository repository;
+    private ArticlesRepositoryInterface repository;
     private boolean isFirstRequest = true;
 
     private MutableLiveData<List<Article>> temp = new MutableLiveData<>();
     private MutableLiveData<String> errorMessage = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isLoadingState = new MutableLiveData<>();
-    private MutableLiveData<Integer> isShowArticlesState = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isShowedErrorMessage = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isLoadingState = new MutableLiveData<>(false);
+    private MutableLiveData<Boolean> isShowedErrorMessage = new MutableLiveData<>(true);
 
     public ArticlesViewModel(Application application) {
         super(application);
         repository = ArticlesRepository.getInstance(application, this);
-        setStateLoading();
+    }
+
+    public void setRepository(ArticlesRepositoryInterface repository) {
+        this.repository = repository;
     }
 
     public void loadArticles(String theme, boolean isSpinnerInit) {
-            if(isFirstRequest || !isSpinnerInit) {
-            setStateLoading();
+        if(isFirstRequest || !isSpinnerInit) {
+            isLoadingState.setValue(true);
             repository.loadArticles(theme, false);
             isFirstRequest = false;
         }
@@ -47,9 +51,6 @@ public class ArticlesViewModel extends AndroidViewModel implements ArticlesViewM
     public LiveData<Boolean> getIsLoadingState() {
         return isLoadingState;
     }
-    public LiveData<Integer> getIsShowArticlesState() {
-        return isShowArticlesState;
-    }
     public LiveData<Boolean> getIsShownErrorMessage() {
         return isShowedErrorMessage;
     }
@@ -60,29 +61,13 @@ public class ArticlesViewModel extends AndroidViewModel implements ArticlesViewM
     @Override
     public void setArticles(List<Article> articles) {
         temp.setValue(articles);
-        setStateShowArticles();
+        isLoadingState.setValue(false);
     }
 
     @Override
     public void setErrorMessage(String message) {
         errorMessage.setValue(message);
-        setStateShowErrorMessage();
-    }
-
-    private void setStateLoading() {
-        isShowArticlesState.setValue(View.GONE);
-        isShowedErrorMessage.setValue(true);
-        isLoadingState.setValue(true);
-    }
-
-    private void setStateShowArticles() {
-        isShowArticlesState.setValue(View.VISIBLE);
-        isShowedErrorMessage.setValue(true);
-        isLoadingState.setValue(false);
-    }
-
-    private void setStateShowErrorMessage() {
-        isShowArticlesState.setValue(View.GONE);
+        temp.setValue(new ArrayList<>());
         isShowedErrorMessage.setValue(false);
         isLoadingState.setValue(false);
     }

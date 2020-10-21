@@ -41,6 +41,14 @@ public class Network implements NetworkInterface {
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
+    public void setJsonPlaceHolderApi(JsonPlaceHolderApi jsonPlaceHolderApi) {
+        this.jsonPlaceHolderApi = jsonPlaceHolderApi;
+    }
+
+    public void setCall(Call<News> call) {
+        this.call = call;
+    }
+
     @Override
     public Call<News> createCall(@NonNull String theme) {
         parameters.put(KEY, KEY_VALUE);

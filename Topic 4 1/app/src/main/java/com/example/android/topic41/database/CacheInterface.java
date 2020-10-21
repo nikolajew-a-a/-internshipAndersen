@@ -1,11 +1,13 @@
 package com.example.android.topic41.database;
 
+import android.os.AsyncTask;
+
 import com.example.android.topic41.data.news.Article;
 
 import java.util.List;
 
 public interface CacheInterface {
-    void getArticlesByTheme(String theme);
+    AsyncTask getArticlesByTheme(String theme);
 
-    void refresh(List<Article> articles);
+    AsyncTask refresh(List<Article> articles);
 }

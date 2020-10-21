@@ -33,15 +33,23 @@ public class Cache implements CacheInterface{
         articleDao = database.articleDao();
     }
 
-    @Override
-    public void getArticlesByTheme(String theme) {
-        Log.i("mLog_CACHE", "getArticlesByTheme");
-        new Cache.LoadArticleAsyncTask(this, articleDao, theme).execute();
+    public void setDatabase(ArticlesDatabase database) {
+        this.database = database;
+    }
+
+    public void setArticleDao(ArticleDao articleDao) {
+        this.articleDao = articleDao;
     }
 
     @Override
-    public void refresh(List<Article> articles) {
-        new RefreshArticleAsyncTask(articleDao).execute(articles);
+    public AsyncTask getArticlesByTheme(String theme) {
+        Log.i("mLog_CACHE", "getArticlesByTheme");
+        return new Cache.LoadArticleAsyncTask(this, articleDao, theme).execute();
+    }
+
+    @Override
+    public AsyncTask refresh(List<Article> articles) {
+        return new RefreshArticleAsyncTask(articleDao).execute(articles);
     }
 
     public void setArticles(List<Article> articles) {
