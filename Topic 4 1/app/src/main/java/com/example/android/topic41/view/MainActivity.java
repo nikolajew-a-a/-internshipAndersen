@@ -53,11 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
         model = ViewModelProviders.of(this).get(ArticlesViewModel.class);
         model.getIsLoadingState().observe(MainActivity.this, loadingState -> {
-            refreshLayout.setRefreshing(loadingState);
-            recyclerView.setVisibility(model.getIsShowArticlesState().getValue());
-            if (!model.getIsShownErrorMessage().getValue()) {
-                Toast.makeText(this, model.getErrorMessage().getValue(), Toast.LENGTH_LONG).show();
-                model.errorMessageShowed();
+            if (loadingState) {
+                refreshLayout.setRefreshing(true);
+                recyclerView.setVisibility(View.GONE);
+            } else {
+                refreshLayout.setRefreshing(false);
+                recyclerView.setVisibility(View.VISIBLE);
+                if (!model.getIsShownErrorMessage().getValue()) {
+                    Toast.makeText(this, model.getErrorMessage().getValue(), Toast.LENGTH_LONG).show();
+                    model.errorMessageShowed();
+                }
             }
         });
         model.getArticles().observe(MainActivity.this, list -> {
