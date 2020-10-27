@@ -1,22 +1,20 @@
 package com.example.android.model;
 
-import android.app.Application;
 import android.content.Context;
 
 import androidx.test.runner.AndroidJUnit4;
 
-import com.example.android.topic41.data.news.Article;
-import com.example.android.topic41.data.news.Source;
-import com.example.android.topic41.database.CacheInterface;
-import com.example.android.topic41.network.NetworkInterface;
-import com.example.android.topic41.repository.ArticlesRepository;
-import com.example.android.topic41.viewmodel.ArticlesViewModel;
+import com.example.android.topic41.domain.util.Article;
+import com.example.android.topic41.domain.util.Source;
+import com.example.android.topic41.data.database.CacheInterface;
+import com.example.android.topic41.data.network.NetworkInterface;
+import com.example.android.topic41.data.repository.ArticlesRepository;
+import com.example.android.topic41.presentation.viewmodel.ArticlesViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;

@@ -2,10 +2,10 @@ package com.example.android.model;
 
 import androidx.test.runner.AndroidJUnit4;
 
-import com.example.android.topic41.data.news.News;
-import com.example.android.topic41.network.JsonPlaceHolderApi;
-import com.example.android.topic41.network.Network;
-import com.example.android.topic41.repository.ArticlesRepositoryInterface;
+import com.example.android.topic41.domain.util.News;
+import com.example.android.topic41.data.network.JsonPlaceHolderApi;
+import com.example.android.topic41.data.network.Network;
+import com.example.android.topic41.data.repository.ArticlesRepositoryInterface;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,16 +13,13 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.matchers.Any;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
 
-import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
 public class NetworkTest {

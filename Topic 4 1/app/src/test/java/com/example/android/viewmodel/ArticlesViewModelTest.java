@@ -2,14 +2,13 @@ package com.example.android.viewmodel;
 
 import android.app.Application;
 import android.content.Context;
-import android.view.View;
 
 import androidx.test.runner.AndroidJUnit4;
 
-import com.example.android.topic41.data.news.Article;
-import com.example.android.topic41.data.news.Source;
-import com.example.android.topic41.repository.ArticlesRepositoryInterface;
-import com.example.android.topic41.viewmodel.ArticlesViewModel;
+import com.example.android.topic41.domain.util.Article;
+import com.example.android.topic41.domain.util.Source;
+import com.example.android.topic41.data.repository.ArticlesRepositoryInterface;
+import com.example.android.topic41.presentation.viewmodel.ArticlesViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
