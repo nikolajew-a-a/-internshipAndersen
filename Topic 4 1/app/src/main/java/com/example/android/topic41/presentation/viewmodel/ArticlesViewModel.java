@@ -6,15 +6,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.android.topic41.domain.usecase.SingleUseCaseCallbackInterface;
 import com.example.android.topic41.domain.usecase.SingleUseCaseInterface;
 import com.example.android.topic41.domain.util.Article;
 
 import java.util.ArrayList;
 import java.util.List;
+import io.reactivex.Observer;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 
-public class ArticlesViewModel extends ViewModel implements SingleUseCaseCallbackInterface {
+public class ArticlesViewModel extends ViewModel {
     private SingleUseCaseInterface useCase;
     private boolean isFirstRequest = true;
     private boolean isInitializedActivity = false;
@@ -27,16 +30,36 @@ public class ArticlesViewModel extends ViewModel implements SingleUseCaseCallbac
     public ArticlesViewModel(SingleUseCaseInterface useCase) {
         Log.i("mLog_VIEWMODEL", "I am new again.");
         this.useCase = useCase;
-        this.useCase.setCallback(this);
     }
 
     public void loadArticles(String theme) {
         if(isFirstRequest || isInitializedActivity) {
             isLoadingState.setValue(true);
-            useCase.loadArticles(theme, false);
+            useCase.loadArticles(theme)
+                    .toObservable()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<List<Article>>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                        }
+
+                        @Override
+                        public void onNext(List<Article> articles) {
+                            setArticles(articles);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            setErrorMessage(e.getMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+                        }
+                    });
             isFirstRequest = false;
-            isInitializedActivity = true;
         }
+        isInitializedActivity = true;
     }
 
     public void errorMessageShowed() {
@@ -60,13 +83,13 @@ public class ArticlesViewModel extends ViewModel implements SingleUseCaseCallbac
         return errorMessage;
     }
 
-    @Override
+
     public void setArticles(List<Article> articles) {
         temp.setValue(articles);
         isLoadingState.setValue(false);
     }
 
-    @Override
+
     public void setErrorMessage(String message) {
         errorMessage.setValue(message);
         temp.setValue(new ArrayList<>());

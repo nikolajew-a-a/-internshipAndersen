@@ -2,14 +2,13 @@ package com.example.android.topic41.data.network;
 
 
 
-import com.example.android.topic41.domain.util.News;
+import com.example.android.topic41.domain.util.Article;
 
-import retrofit2.Call;
+import java.util.List;
+
+import io.reactivex.Single;
+
 
 public interface NetworkInterface {
-    Call<News> createCall(String theme);
-
-    void makeRequest(String theme);
-
-    void setCallback(NetworkCallbackInterface callback);
+    Single<List<Article>> createObservable(String theme);
 }

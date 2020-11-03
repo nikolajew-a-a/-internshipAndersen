@@ -6,10 +6,10 @@ import com.example.android.topic41.domain.util.Article;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 public interface CacheInterface {
-    AsyncTask getArticlesByTheme(String theme);
+    Single<List<Article>> getArticlesByTheme(String theme);
 
-    AsyncTask refresh(List<Article> articles);
-
-    void setCallback(CacheCallbackInterface callback);
+    void refresh(List<Article> articles, Long currentTime);
 }

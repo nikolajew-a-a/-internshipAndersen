@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,8 +19,6 @@ import com.example.android.topic41.di.components.DaggerMainActivityComponent;
 import com.example.android.topic41.di.components.MainActivityComponent;
 import com.example.android.topic41.domain.util.Theme;
 import com.example.android.topic41.domain.util.Article;
-
-
 
 import com.example.android.topic41.presentation.view.adapter.Adapter;
 import com.example.android.topic41.presentation.viewmodel.ArticlesViewModel;
@@ -87,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        Log.i("mLog_ACTIVITY", "activityDestroyed");
         model.activityDestroyed();
+        super.onDestroy();
     }
 
     private Spinner initSpinner(int id, @NonNull Theme data) {
@@ -104,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                     String key = parent.getSelectedItem().toString();
                     theme = data.getRequestParameterValues().get(key);
                     model.loadArticles(theme);
-                    //isInit = false;
                 }
             }
             @Override
