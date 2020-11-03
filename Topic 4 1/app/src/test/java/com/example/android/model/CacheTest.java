@@ -7,13 +7,12 @@ import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.example.android.topic41.data.news.Article;
-import com.example.android.topic41.data.news.Source;
-import com.example.android.topic41.database.ArticleDao;
-import com.example.android.topic41.database.ArticlesDatabase;
-import com.example.android.topic41.database.Cache;
-import com.example.android.topic41.network.Network;
-import com.example.android.topic41.repository.ArticlesRepositoryInterface;
+import com.example.android.topic41.domain.util.Article;
+import com.example.android.topic41.domain.util.Source;
+import com.example.android.topic41.data.database.ArticleDao;
+import com.example.android.topic41.data.database.ArticlesDatabase;
+import com.example.android.topic41.data.database.Cache;
+import com.example.android.topic41.data.repository.ArticlesRepositoryInterface;
 
 import org.junit.After;
 import org.junit.Before;
