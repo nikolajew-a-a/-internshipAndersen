@@ -1,7 +1,13 @@
 package com.example.android.topic41.data.repository;
 
-public interface ArticlesRepositoryInterface {
-    void loadArticles(String theme, boolean cacheChecked);
+import com.example.android.topic41.domain.util.Article;
 
-    void setCallback(RepositoryCallbackInterface viewModel);
+import java.util.List;
+
+import io.reactivex.Single;
+
+public interface ArticlesRepositoryInterface {
+    Single<List<Article>> loadArticles(String theme);
+
+
 }

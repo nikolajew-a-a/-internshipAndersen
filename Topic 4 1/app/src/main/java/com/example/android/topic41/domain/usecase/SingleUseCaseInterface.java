@@ -1,9 +1,11 @@
 package com.example.android.topic41.domain.usecase;
 
-import com.example.android.topic41.data.repository.RepositoryCallbackInterface;
+import com.example.android.topic41.domain.util.Article;
+
+import java.util.List;
+
+import io.reactivex.Single;
 
 public interface SingleUseCaseInterface {
-    void loadArticles(String theme, boolean cacheChecked);
-
-    void setCallback(SingleUseCaseCallbackInterface viewModel);
+    Single<List<Article>> loadArticles(String theme);
 }

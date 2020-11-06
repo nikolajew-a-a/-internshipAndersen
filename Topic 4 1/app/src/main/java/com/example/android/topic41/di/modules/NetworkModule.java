@@ -1,17 +1,13 @@
 package com.example.android.topic41.di.modules;
 
-import androidx.lifecycle.ViewModel;
-
-import com.example.android.topic41.data.database.ArticleDao;
-import com.example.android.topic41.data.database.ArticlesDatabase;
 import com.example.android.topic41.data.network.Network;
 
 import javax.inject.Singleton;
 
-import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -30,6 +26,7 @@ public abstract class NetworkModule {
         return new Retrofit.Builder()
                                     .baseUrl(BASE_URL)
                                     .addConverterFactory(GsonConverterFactory.create())
+                                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                                     .build();
     }
 }

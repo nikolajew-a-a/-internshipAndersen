@@ -10,15 +10,17 @@ import com.example.android.topic41.domain.util.Article;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 
 @Dao
 public interface ArticleDao {
     @Query("SELECT * FROM articles_table WHERE theme = :topic  ORDER BY publishedAt DESC")
-    List<Article> getArticlesByTheme(String topic);
+    Single<List<Article>> getArticlesByTheme(String topic);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(List<Article> articles);
 
-    @Query("DELETE FROM articles_table WHERE theme = :topic")
-    void deleteByTheme(String topic);
+    @Query("DELETE FROM articles_table WHERE theme = :topic AND time < :currentTime")
+    void deleteByTheme(String topic, Long currentTime);
 }

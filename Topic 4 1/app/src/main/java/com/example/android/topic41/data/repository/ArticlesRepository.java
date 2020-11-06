@@ -2,66 +2,62 @@ package com.example.android.topic41.data.repository;
 
 import android.util.Log;
 
-import com.example.android.topic41.data.database.CacheCallbackInterface;
-import com.example.android.topic41.data.network.NetworkCallbackInterface;
 import com.example.android.topic41.domain.util.Article;
 import com.example.android.topic41.data.database.CacheInterface;
 import com.example.android.topic41.data.network.NetworkInterface;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import io.reactivex.Single;
 
 
-public class ArticlesRepository implements ArticlesRepositoryInterface, CacheCallbackInterface, NetworkCallbackInterface {
-    private static ArticlesRepository instance;
+
+public class ArticlesRepository implements ArticlesRepositoryInterface {
     private NetworkInterface network;
     private CacheInterface cache;
-    private RepositoryCallbackInterface callBack;
+    private Map<String, Long> cacheTime = new HashMap<>();
 
-    public static ArticlesRepository getInstance(CacheInterface cache, NetworkInterface network) {
-        if (instance == null) {
-            instance = new ArticlesRepository(cache, network);
-        }
-        return instance;
-    }
+    private static final int TIME_TO_REFRESH = 60_000;
+
 
     public ArticlesRepository(CacheInterface cache, NetworkInterface network) {
         this.cache = cache;
         this.network = network;
-        cache.setCallback(this);
-        network.setCallback(this);
     }
 
-    @Override
-    public void setCallback(RepositoryCallbackInterface useCase) {
-        this.callBack = useCase;
-    }
 
     @Override
-    public void loadArticles(String theme, boolean cacheChecked) {
-        if (!cacheChecked) {
-            Log.i("mLog_REPOSITORY", "YES. Maybe is data in the cache");
-            cache.getArticlesByTheme(theme);
+    public Single<List<Article>> loadArticles(String theme) {
+        long currentTime = System.currentTimeMillis();
+        boolean isCacheFull = cacheTime.get(theme) != null && currentTime - cacheTime.get(theme) < TIME_TO_REFRESH;
+        if (isCacheFull) {
+            Log.i("mLog_REPOSITORY", "YES. Hear is data in the cache");
+            return cache.getArticlesByTheme(theme);
         } else {
             Log.i("mLog_REPOSITORY", "NO. Hear is not data in the cache");
-            network.createCall(theme);
-            network.makeRequest(theme);
+            return network.createObservable(theme)
+                    .map(articles -> prepareForCache(theme, articles))
+                    .map(this::refreshCache);
         }
     }
 
-    @Override
-    public void setArticlesFromCache(List<Article> articles) {
-        callBack.setArticles(articles);
+
+    public List<Article> prepareForCache(String theme, List<Article> articles) {
+        long currentTime = System.currentTimeMillis();
+        cacheTime.put(theme, currentTime);
+        for (Article article : articles) {
+            article.setTime(currentTime);
+            article.setTheme(theme);
+        }
+        return articles;
     }
 
-    @Override
-    public void setArticlesFromNetwork(List<Article> articles) {
-        cache.refresh(articles);
-        callBack.setArticles(articles);
-    }
-
-    @Override
-    public void setErrorMessage(String message) {
-        Log.i("mLog_REPOSITORY", "setErrorMessage");
-        callBack.setErrorMessage(message);
+    public List<Article> refreshCache(List<Article> articles) {
+        if (articles.size() > 0) {
+            cache.refresh(articles, articles.get(0).getTime());
+        }
+        return articles;
     }
 }

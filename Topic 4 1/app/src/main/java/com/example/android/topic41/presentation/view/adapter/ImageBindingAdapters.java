@@ -5,7 +5,6 @@ import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
-
 import com.bumptech.glide.Glide;
 import com.example.android.topic41.R;
 import com.squareup.picasso.Picasso;
@@ -17,7 +16,7 @@ public class ImageBindingAdapters {
 
         Picasso.get()
                 .load(resource)
-                .placeholder(R.drawable.ic_launcher_foreground)
+                .placeholder(R.drawable.place_holder)
                 .into(image);
     }
 
@@ -26,7 +25,7 @@ public class ImageBindingAdapters {
         Context context = image.getContext();
         Glide.with(context)
                 .load(resource)
-                .placeholder(R.drawable.ic_launcher_foreground)
+                .placeholder(R.drawable.place_holder)
                 .fitCenter()
                 .into(image);
     }

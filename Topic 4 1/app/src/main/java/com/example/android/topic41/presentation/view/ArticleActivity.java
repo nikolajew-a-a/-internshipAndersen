@@ -1,6 +1,5 @@
 package com.example.android.topic41.presentation.view;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 

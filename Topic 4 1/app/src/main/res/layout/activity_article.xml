@@ -69,7 +69,7 @@
                 android:layout_height="@dimen/image_size"
                 android:layout_gravity="center"
                 app:glide="@{article.urlToImage}"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                app:srcCompat="@drawable/place_holder" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:layout_height="@dimen/image_size"
                 android:layout_gravity="center"
                 app:picasso="@{article.urlToImage}"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                app:srcCompat="@drawable/place_holder" />
 
         </LinearLayout>
     </ScrollView>
