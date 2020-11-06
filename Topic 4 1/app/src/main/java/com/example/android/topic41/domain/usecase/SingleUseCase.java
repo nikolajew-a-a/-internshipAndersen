@@ -14,7 +14,6 @@ public class SingleUseCase implements SingleUseCaseInterface {
     private ArticlesRepositoryInterface repository;
 
     public SingleUseCase(ArticlesRepositoryInterface repository) {
-        Log.i("mLog_USECASE", "I am new again.");
         this.repository = repository;
     }
 

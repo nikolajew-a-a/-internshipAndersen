@@ -28,19 +28,15 @@ public class Network implements NetworkInterface {
 
 
 
-    public Network(Retrofit retrofit) {
-        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+    public Network(JsonPlaceHolderApi jsonPlaceHolderApi) {
+        this.jsonPlaceHolderApi = jsonPlaceHolderApi;
     }
 
     @Override
     public Single<List<Article>> createObservable(@NonNull String theme) {
         parameters.put(KEY, KEY_VALUE);
         parameters.put("q", theme);
-        observable = jsonPlaceHolderApi.getNews(parameters).map(news -> {
-            List<Article> articles = news.getArticles();
-            Log.i("mLog_CACHE", "" + articles.size());
-            return articles;
-        });
+        observable = jsonPlaceHolderApi.getNews(parameters).map(News::getArticles);
         return observable;
     }
 }

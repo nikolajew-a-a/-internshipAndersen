@@ -35,12 +35,7 @@ public class Cache implements CacheInterface{
 
     @Override
     public Single<List<Article>> getArticlesByTheme(String theme) {
-        return articleDao.getArticlesByTheme(theme).subscribeOn(Schedulers.io()).map(articles -> {
-            for (Article article : articles) {
-                Log.i("mLog_CACHE", article.getTheme() + " // " + article.getTitle());
-            }
-                    return articles;
-        });
+        return articleDao.getArticlesByTheme(theme).subscribeOn(Schedulers.io());
     }
 
     @Override

@@ -33,10 +33,8 @@ public class ArticlesRepository implements ArticlesRepositoryInterface {
         long currentTime = System.currentTimeMillis();
         boolean isCacheFull = cacheTime.get(theme) != null && currentTime - cacheTime.get(theme) < TIME_TO_REFRESH;
         if (isCacheFull) {
-            Log.i("mLog_REPOSITORY", "YES. Hear is data in the cache");
             return cache.getArticlesByTheme(theme);
         } else {
-            Log.i("mLog_REPOSITORY", "NO. Hear is not data in the cache");
             return network.createObservable(theme)
                     .map(articles -> prepareForCache(theme, articles))
                     .map(this::refreshCache);
