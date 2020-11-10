@@ -1,5 +1,6 @@
 package com.example.android.topic41.di.modules;
 
+import com.example.android.topic41.data.network.JsonPlaceHolderApi;
 import com.example.android.topic41.data.network.Network;
 
 import javax.inject.Singleton;
@@ -16,17 +17,18 @@ public abstract class NetworkModule {
 
     @Singleton
     @Provides
-    static Network provideNetwork(Retrofit retrofit){
-        return new Network(retrofit);
+    static Network provideNetwork(JsonPlaceHolderApi jsonPlaceHolderApi){
+        return new Network(jsonPlaceHolderApi);
     }
 
     @Singleton
     @Provides
-    static Retrofit provideRetrofit(){
-        return new Retrofit.Builder()
-                                    .baseUrl(BASE_URL)
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                                    .build();
+    static JsonPlaceHolderApi provideRetrofit(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        return retrofit.create(JsonPlaceHolderApi.class);
     }
 }
